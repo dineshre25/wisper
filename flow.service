@@ -1,0 +1,17 @@
+[Unit]
+Description=Flow-Local Dictation Daemon
+After=network.target pulseaudio.service
+
+[Service]
+Type=simple
+# Update the paths below to where you clone the repository
+WorkingDirectory=/home/YOUR_USERNAME/flow-local
+ExecStart=/home/YOUR_USERNAME/flow-local/venv/bin/python /home/YOUR_USERNAME/flow-local/flow.py
+Restart=on-failure
+RestartSec=5
+# Ensure environment variables for Wayland/X11 are passed to xdotool/wtype
+Environment="WAYLAND_DISPLAY=%E/WAYLAND_DISPLAY"
+Environment="DISPLAY=:0"
+
+[Install]
+WantedBy=default.target
